@@ -1,13 +1,21 @@
 radio.onReceivedValue(function (name, value) {
     led.toggle(2, 0)
-    if (name == "step") {
+    if (name == "jump") {
         OLED.writeNumNewLine(value)
         if (value % 2 == 0) {
-            serial.writeValue("a.steps", 2000)
+            serial.writeValue("a.jump", 2000)
         } else {
-            serial.writeValue("a.steps", 0)
+            serial.writeValue("a.jump", 0)
         }
-        serial.writeValue("steps", value)
+        serial.writeValue("b.jump", value)
+    } else if (name == "step") {
+        OLED.writeNumNewLine(value)
+        if (value % 2 == 0) {
+            serial.writeValue("a.step", 2000)
+        } else {
+            serial.writeValue("a.step", 0)
+        }
+        serial.writeValue("b.step", value)
     } else {
         serial.writeValue("a.accel", value)
     }
